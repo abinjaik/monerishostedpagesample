@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Moneris_ASP.NETCoreMVCApp.Models.CheckoutModel
+
+<style>
+    .checkout {
+        background-color: #008CBA; /* Bluish */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <h3>Payment form</h3>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-1">Order ID :</div> <div class="col-md-7">@Model.OrderID</div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-1">Amount  :</div> <div class="col-md-7">@Model.Amount</div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" action="@Model.CheckOurUrl">
+
+                <input type="HIDDEN" name="ps_store_id" value="@Model.PaymentGatewayConfig.StoreID" />
+
+
+                <input type="HIDDEN" name="hpp_key" value="@Model.PaymentGatewayConfig.HPPKey" />
+
+                <input type="HIDDEN" name="charge_total" value="@Model.Amount" />
+
+
+
+                <!--MORE OPTIONAL VARIABLES CAN BE DEFINED HERE -->
+                <input type="hidden" name="order_id" value="@Model.OrderID" />
+
+
+
+
+
+                <input type="SUBMIT" class="checkout" name="SUBMIT" value="Checkout">
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
